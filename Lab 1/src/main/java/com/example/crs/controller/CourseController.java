@@ -31,6 +31,9 @@ public class CourseController {
 	
 	@PostMapping("/courses")
 	public ResponseEntity<Course> createCourse(@RequestBody Course course){
+		
+		// information will be saved in RequestBody, a JSON document will be send to server 
+		//and then be converted to java object by spring boot
 		try {
 		Course newCourse = new Course(course.getCode(), course.getTitle());
 		courseRepo.save(newCourse);
@@ -62,14 +65,19 @@ public class CourseController {
 		}
 	}
 	
-	@GetMapping("/courses/{id}")
-	public ResponseEntity<Course> getCourseById(@PathVariable("id") long id) {
+	@GetMapping("/courses/{id}") // use {} for path variable 1
+	public ResponseEntity<Course> getCourseById(@PathVariable("id") long id) { //2
+		// path variable, id in 1 and 2 need to have the same name
+		// When get request occur with the id, the get mapping invoke the method
+		try {
 		Optional<Course> courseData = courseRepo.findById(id);
-
 		if (courseData.isPresent()) {
 			return new ResponseEntity<>(courseData.get(), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		}catch(Exception e){
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
 		}
 	}
 	
