@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import com.example.crs.model.Course;
 import com.example.crs.model.CourseRepositoty;
 import com.example.crs.model.Section;
+import com.example.crs.model.Student;
 
 @SpringBootApplication
 public class CrsApplication {
@@ -35,6 +36,18 @@ public class CrsApplication {
 			csis3275.addSection(new Section(3));
 			courseRepo.save(csis3275);
 			
+Course csis2175 = new Course("CSIS3275", "ADVANCED INTEGRATED SOFTWARE DEVELOPMENT");
+			
+			Student ivan = new Student("Ivan Wong", "123456");
+			Student simon = new Student("Simon Li", "234567");
+			
+			csis2175.addStudent(ivan);
+			csis2175.addStudent(simon);
+			
+			csis3275.addStudent(simon);
+			
+			courseRepo.save(csis3275);
+			courseRepo.save(csis2175);
 			
 //			courseRepo.save(new Course("CSIS3275","Software Engineering"));
 //			courseRepo.save(new Course("CSIS2175","Advanced Integrated Software Development"));
