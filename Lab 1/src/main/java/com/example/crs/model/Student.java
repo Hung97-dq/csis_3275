@@ -54,7 +54,7 @@ public class Student {
 		this.courses = courses;
 	}
 
-	public Student(String name, String sid, Set<Course> courses) {
+	public Student(String name, String sid) {
 		super();
 		this.name = name;
 		this.sid = sid;

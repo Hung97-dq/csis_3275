@@ -81,6 +81,11 @@ public class Course {
 		this.sections.add(section);
 		section.setCourse(this);
 	}
+	
+	public void addStudent(Student student) {
+		this.students.add(student);
+		student.getCourses().add(this);
+	}
 
 	public Set<Student> getStudents() {
 		return students;
