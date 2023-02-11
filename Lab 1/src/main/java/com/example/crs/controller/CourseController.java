@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.crs.model.Course;
 import com.example.crs.model.CourseRepositoty;
 
-@CrossOrigin(origins ="http://localhoast:8081")
+@CrossOrigin(origins ="http://localhost:8081")
 @RestController    //Return will be convert to JSON
 @RequestMapping("/api") //provide prefix
 public class CourseController {

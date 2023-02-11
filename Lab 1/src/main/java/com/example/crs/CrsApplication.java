@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.example.crs.model.Course;
 import com.example.crs.model.CourseRepositoty;
+import com.example.crs.model.Section;
 
 @SpringBootApplication
 public class CrsApplication {
@@ -24,9 +25,20 @@ public class CrsApplication {
 		//lambda (Ad-host method, only use once and will not be use anymore)
 		// (arg) is the parameter parse to the method
 		return (arg) ->{
-			courseRepo.save(new Course("CSIS3275","Software Engineering"));
-			courseRepo.save(new Course("CSIS2175","Advanced Integrated Software Development"));
-			courseRepo.save(new Course("CSIS1190","Excel in Business"));
+			Course csis3275 = new Course("CSIS3275","Software Engineering");
+//			Section section1 = new Section(1);
+//			csis3275.getSections().add(section1);
+//			section1.setCourse(csis3275);
+			
+			csis3275.addSection(new Section(1));
+			csis3275.addSection(new Section(2));
+			csis3275.addSection(new Section(3));
+			courseRepo.save(csis3275);
+			
+			
+//			courseRepo.save(new Course("CSIS3275","Software Engineering"));
+//			courseRepo.save(new Course("CSIS2175","Advanced Integrated Software Development"));
+//			courseRepo.save(new Course("CSIS1190","Excel in Business"));
 			
 //			List<Course> courses = courseRepo.findAll();
 //			
