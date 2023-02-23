@@ -40,13 +40,17 @@ Course csis2175 = new Course("CSIS3275", "ADVANCED INTEGRATED SOFTWARE DEVELOPME
 			
 			Student ivan = new Student("Ivan Wong", "123456");
 			Student simon = new Student("Simon Li", "234567");
+			csis2175.getStudents().add(simon);
+			simon.getCourses().add(csis2175);
 			
-			csis2175.addStudent(ivan);
-			csis2175.addStudent(simon);
+			csis2175.getStudents().add(ivan);
+			ivan.getCourses().add(csis2175);
+			csis2175.removeStudent(ivan);
+//			csis2175.addStudent(ivan);
+//			csis2175.addStudent(simon);
+//			
+//			csis3275.addStudent(simon);
 			
-			csis3275.addStudent(simon);
-			
-			courseRepo.save(csis3275);
 			courseRepo.save(csis2175);
 			
 //			courseRepo.save(new Course("CSIS3275","Software Engineering"));

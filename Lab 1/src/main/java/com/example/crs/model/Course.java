@@ -26,14 +26,13 @@ public class Course {
 	
 	
 	// Owner class or owner entity
-	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST.MERGE})
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.MERGE})
 	@JoinTable(name = "course_students", joinColumns= {
 			@JoinColumn(name= "code", referencedColumnName = "id")
 	},
 	inverseJoinColumns = {
 			@JoinColumn(name= "StudentID", referencedColumnName = "id")
 	})
-	
 	private Set<Student> students = new HashSet<>();
 	
 	public Course() {
@@ -83,10 +82,18 @@ public class Course {
 	}
 	
 	public void addStudent(Student student) {
-		this.students.add(student);
+		this.getStudents().add(student);
 		student.getCourses().add(this);
 	}
 
+	 public void removeStudent(Student student) {
+		    Student studentss = this.students.stream().filter(t -> t.getId() == student.getId()).findFirst().orElse(null);
+		    if (studentss != null) {
+		      this.students.remove(studentss);
+		      studentss.getCourses().remove(this);
+		    }
+		  }
+	 
 	public Set<Student> getStudents() {
 		return students;
 	}

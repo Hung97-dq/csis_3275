@@ -3,6 +3,8 @@ package com.example.crs.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -19,7 +21,8 @@ public class Student {
 	@Column(name="sid")
 	private String sid;
 	
-	@ManyToMany(mappedBy = "students", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST.MERGE})
+	@ManyToMany(mappedBy = "students", fetch = FetchType.LAZY, cascade ={CascadeType.MERGE, CascadeType.PERSIST})
+	@JsonIgnore
 	private Set<Course> courses = new HashSet<>();
 
 	public long getId() {
@@ -58,6 +61,9 @@ public class Student {
 		super();
 		this.name = name;
 		this.sid = sid;
+	}
+	
+	public Student() {
 	}
 	
 	
